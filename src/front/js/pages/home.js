@@ -1,33 +1,34 @@
-import React, { useContex, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Signup from "../pages/signup";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	function handleLogout() {
-		actions.logout();
-	}
+  function handleLogout() {
+    actions.logout();
+  }
 
-	return (
-		<div className="text-center mt-5">
-			<div>
-				{!store.token ? 
-				<>
-				<Link to='/login'>
-					<button className="btn-success">Login</button>
-				</Link>
-				<Link to='/signup'>
-					<button className="btn-primary">Sign Up</button>
-				</Link>
-				</>
-				:
-				<button className="btn-secondary" onClick={handleLogout}>Logout</button>
-				}
-			</div>
-		</div>
-	);
+  return (
+    <div className="text-center mt-5">
+      <div>
+        {!store.token ? (
+          <>
+            <Link to="/login">
+              <button className="btn-success">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button className="btn-primary">Sign Up</button>
+            </Link>
+          </>
+        ) : (
+          <button className="btn-secondary" onClick={handleLogout}>
+            Logout
+          </button>
+        )}
+      </div>
+    </div>
+  );
 };
